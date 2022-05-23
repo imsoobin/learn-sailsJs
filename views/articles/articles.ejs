@@ -1,0 +1,43 @@
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+<h2>Table add item</h2>
+<form action="/articles/add" method="POST">
+  <label for="fname">Title:</label><br />
+  <input type="text" id="fname" name="title" required /><br />
+  <label for="lname">Body:</label><br />
+  <input type="text" id="lname" name="body" required /><br /><br />
+  <input type="submit" value="Submit" name="submit" />
+</form>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Item</th>
+    <th>Actions</th>
+  </tr>
+  <% articles.forEach(function(params) { %>
+  <tr>
+    <td><%= params.title %></td>
+    <td><%= params.body %></td>
+    <td>
+      <a href="/articles/edit/<%= params.id %>">Edit</a>
+      <a href="/articles/delete/<%= params.id %>">Delete</a>
+    </td>
+  </tr>
+  <% }); %>
+</table>
